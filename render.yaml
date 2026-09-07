@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: cyber-alpha-jarvis
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn src.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: JARVIS_GATEWAY_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        value: "*"
