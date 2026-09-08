@@ -14,7 +14,7 @@ import httpx
 
 load_dotenv()
 
-APP_VERSION = "2.1.1"
+APP_VERSION = "2.5.0"
 ROOT_DIR = Path(__file__).resolve().parent.parent
 STATIC_DIR = ROOT_DIR / "static"
 
@@ -154,6 +154,9 @@ def _auth_headers(api_key: str) -> dict:
 
 @app.get("/", response_class=HTMLResponse)
 async def family_home():
+    nexus = STATIC_DIR / "family" / "nexus" / "index.html"
+    if nexus.is_file():
+        return FileResponse(nexus)
     home = STATIC_DIR / "home.html"
     if home.is_file():
         return FileResponse(home)
@@ -174,6 +177,21 @@ async def ui_sala():
 @app.get("/api")
 async def read_root():
     return _status_payload()
+
+
+@app.get("/changelog")
+async def changelog():
+    return {
+        "version": APP_VERSION,
+        "notes": [
+            "NEXUS e a janela raiz /",
+            "Jarvis embutido como IA da mesa",
+            "Chaves no browser + headers no /chat",
+            "ORBI quiz com banco de perguntas",
+            "Studio, inbox, jobs, notas, mapa",
+            "Sem Claude/Docker/Drive nesta URL",
+        ],
+    }
 
 
 @app.get("/health")

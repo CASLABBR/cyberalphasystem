@@ -1,63 +1,40 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#050914"><title>NEXUS AI OS 1.0.2</title><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./styles.css"></head><body>
-<div id="app" class="app-shell">
-<header class="titlebar">
-  <div class="brand"><span class="brand-mark">N</span><div><b>NEXUS</b><small>AI OS 1.0.2</small></div></div>
-  <div class="title-center"><span class="workspace-name">Adaptive Workspace</span><span class="env-pill">DEV</span></div>
-  <div class="title-actions"><button data-action="command" title="Smart Bar (Ctrl+K)">⌘ K</button><button id="themeBtn" title="Tema">◐</button><button title="Notificações">◌<i class="dot"></i></button><button title="Perfil">AS</button></div>
-</header>
-<nav class="menubar" id="menuBar"><button>Arquivo</button><button>Exibir</button><button>Projeto</button><button>Módulo</button><button>Ferramentas</button><button>Automação</button><button>Ajuda</button><div class="menu-spacer"></div><button data-action="scene">▦ Layout</button><button data-action="command">⌕ Smart Bar</button></nav>
-<div class="body-grid">
-<aside class="sidebar" id="sidebar">
-  <div class="side-search" data-action="command">⌕ <span>Pesquisar tudo...</span><kbd>Ctrl K</kbd></div>
-  <div class="nav-section"><small>OPERAÇÃO</small>
-    <button class="nav active" data-page="home"><i>◈</i><span>Visão Geral</span></button>
-    <button class="nav" data-page="workspace"><i>▦</i><span>Workspace</span><em class="ok">✓</em></button>
-    <button class="nav" data-page="ai"><i>✦</i><span>NEXUS AI</span><em class="ok">✓</em></button>
-    <button class="nav" data-page="studio"><i>⌬</i><span>Studio</span><em class="ok">✓</em></button>
-    <button class="nav" data-page="terminal"><i>›_</i><span>Terminal & Lab</span><em class="warn">!</em></button>
-    <button class="nav" data-page="media"><i>◆</i><span>Media & Converter</span><em class="warn">!</em></button>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050914">
+  <title>NEXUS — Cyber Alpha System</title>
+  <link rel="icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="/nexus/shell.css">
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="os">
+    <aside class="os-rail">
+      <div class="brand">
+        <div class="orb"><span class="orb-core"></span><span class="orb-ring"></span></div>
+        <div>
+          <p class="brand-kicker">Cyber Alpha</p>
+          <h1>NEXUS</h1>
+        </div>
+      </div>
+      <p class="tag">Mesa central. Só entra o que tem código.</p>
+      <div class="badge-row">
+        <span id="pill-ver" class="pill">…</span>
+        <span id="pill-keys" class="pill warn">chaves</span>
+      </div>
+      <nav id="menu" class="os-menu"></nav>
+    </aside>
+    <main class="os-stage">
+      <header class="os-bar">
+        <strong id="mod-title">NEXUS</strong>
+        <span id="mod-hint" class="sub"></span>
+      </header>
+      <section id="stage" class="os-body"></section>
+    </main>
   </div>
-  <div class="nav-section"><small>INTELIGÊNCIA</small>
-    <button class="nav" data-page="radar"><i>⌖</i><span>Radar & Notícias</span><em class="ok">✓</em></button>
-    <button class="nav" data-page="commerce"><i>◫</i><span>Commerce</span><em class="warn">!</em></button>
-    <button class="nav" data-page="automation"><i>↻</i><span>Automação & Jobs</span></button>
-    <button class="nav" data-page="monitor"><i>◉</i><span>Monitor / NOC</span><em class="ok">✓</em></button>
-  </div>
-  <div class="nav-section"><small>RECURSOS</small>
-    <button class="nav" data-page="files"><i>▣</i><span>Arquivos & Storage</span></button>
-    <button class="nav" data-page="connections"><i>⛓</i><span>Connection Center</span><em class="warn">!</em></button>
-    <button class="nav" data-page="skills"><i>⬡</i><span>Skills & Apps</span></button>
-    <button class="nav" data-page="cost"><i>◐</i><span>Custos & Recursos</span></button>
-    <button class="nav" data-page="security"><i>⌁</i><span>Usuários & Segurança</span><em class="warn">!</em></button>
-  </div>
-  <div class="side-bottom"><button class="nav" data-page="settings"><i>⚙</i><span>Configurações</span></button><div class="version">NEXUS AI OS <b>1.0.2</b><span>Full Product Skeleton</span></div></div>
-</aside>
-<main id="main" class="main">
-  <section class="static-fallback" id="staticFallback">
-    <div class="page-head"><div><div class="page-title">Visão Geral</div><div class="page-sub">O trabalho começa e termina aqui.</div></div><div class="page-actions"><button class="btn primary" data-action="command">⌘ Smart Bar</button></div></div>
-    <div class="hero"><div class="hero-kicker">NEXUS AI OS • FULL PRODUCT SKELETON 1.0.2</div><h1>Uma camada operacional única para IA, software, arquivos, automação e negócio.</h1><p>Use a Smart Bar, abra módulos, acompanhe recursos e trabalhe em qualquer tamanho de tela. Esta visão também aparece quando o visualizador bloqueia JavaScript.</p><div class="hero-actions"><button class="btn primary" data-action="command">⌘ Fazer alguma coisa</button><button class="btn" data-go="workspace">Abrir Workspace</button><button class="btn" data-go="connections">Conectar serviços</button></div></div>
-    <div class="kpi-strip"><div class="kpi"><small>SYSTEM HEALTH</small><b>97%</b></div><div class="kpi"><small>WORKSPACE</small><b>ADAPTIVE</b></div><div class="kpi"><small>AI POLICY</small><b>FREE-FIRST</b></div><div class="kpi"><small>DEVICE</small><b>RESPONSIVE</b></div></div>
-    <div class="section"><div class="section-head"><h2>Acesso rápido</h2><p>Principais áreas do NEXUS</p></div><div class="quick-grid">
-      <div class="quick" data-go="workspace"><span class="ico">▦</span><b>Workspace</b><small>1–4 painéis • Scenes</small></div>
-      <div class="quick" data-go="ai"><span class="ico">✦</span><b>NEXUS AI</b><small>Roteador • agentes</small></div>
-      <div class="quick" data-go="studio"><span class="ico">⌬</span><b>Studio</b><small>Código • Preview • Git</small></div>
-      <div class="quick" data-go="terminal"><span class="ico">›_</span><b>Terminal & Lab</b><small>Comandos • Sandbox</small></div>
-      <div class="quick" data-go="media"><span class="ico">◆</span><b>Media Hub</b><small>Converter • voz • vídeo</small></div>
-      <div class="quick" data-go="radar"><span class="ico">⌖</span><b>Radar</b><small>Notícias • ferramentas</small></div>
-    </div></div>
-    <div class="section grid cols-2"><div class="card"><div class="card-title">◉ <span>Compatibilidade de tela</span><span class="grow"></span><span class="tag green">ATIVA</span></div><div class="activity"><span class="aico">✓</span><div><b>Celular vertical</b><small>Layout compacto e navegação horizontal inferior</small></div></div><div class="activity"><span class="aico">✓</span><div><b>Celular horizontal</b><small>Altura otimizada e conteúdo priorizado</small></div></div><div class="activity"><span class="aico">✓</span><div><b>Tablet</b><small>Sidebar adaptativa em vertical/horizontal</small></div></div><div class="activity"><span class="aico">✓</span><div><b>Desktop / ultrawide</b><small>Workspace multipainel</small></div></div></div><div class="card"><div class="card-title">✦ <span>Entrada universal</span></div><div class="card-sub">Cole URL, GitHub, comando, pergunta, arquivo ou texto. O NEXUS identifica a intenção antes de escolher a ferramenta.</div><div class="tool-actions"><button class="btn primary" data-action="command">Abrir Smart Bar</button></div></div></div>
-    <noscript><div class="noscript-banner"><b>Modo compatibilidade:</b> este visualizador bloqueou JavaScript. A interface principal continua visível; para usar módulos interativos, abra pelo navegador/PWA ou pelo executável NEXUS.</div></noscript>
-  </section>
-</main>
-<nav class="mobile-dock" aria-label="Navegação rápida">
-  <button data-pagejump="home"><i>◈</i><span>Início</span></button><button data-pagejump="workspace"><i>▦</i><span>Workspace</span></button><button data-pagejump="ai"><i>✦</i><span>IA</span></button><button data-pagejump="studio"><i>⌬</i><span>Studio</span></button><button data-pagejump="media"><i>◆</i><span>Media</span></button><button data-pagejump="radar"><i>⌖</i><span>Radar</span></button><button data-pagejump="connections"><i>⛓</i><span>Conexões</span></button>
-</nav>
-</div>
-<footer class="statusbar" id="statusBar">
- <button data-pagejump="monitor"><span class="led online"></span> NEXUS ONLINE</button><button data-pagejump="monitor">CPU <b id="cpuStat">--</b></button><button data-pagejump="monitor">RAM <b id="ramStat">--</b></button><button data-pagejump="monitor">NET <b id="netStat">●</b></button><button data-pagejump="automation">JOBS <b id="jobStat">0</b></button><button data-pagejump="ai">AI <b>FREE-FIRST</b></button><button title="Interface carregada" id="uiCoreStat">UI <b>CORE</b></button><button data-pagejump="cost">CUSTO <b id="costStat">R$0,00</b></button><div class="status-fill"></div><button id="statusCustomize">⊕ Personalizar</button><span id="clock">--:--</span>
-</footer>
-</div>
-<div class="command-overlay hidden" id="commandOverlay"><div class="command-box"><div class="command-head"><span>⌘</span><input id="smartInput" autocomplete="off" placeholder="Cole URL, GitHub, comando, arquivo, pergunta ou diga o que quer fazer..."><kbd>ESC</kbd></div><div class="command-mode"><button class="active">AUTO</button><button>SANDBOX</button><button>DEV</button><button>PRODUÇÃO</button></div><div id="commandResult" class="command-result"></div><div class="command-hint">NEXUS entende intenção antes de escolher a ferramenta. Enter para analisar • Ctrl+Enter para executar caminho seguro.</div></div></div>
-<div class="drawer hidden" id="drawer"><div class="drawer-head"><b>NEXUS Context Assistant</b><button id="drawerClose">×</button></div><div class="drawer-body" id="drawerBody"></div></div>
-<div class="toast-stack" id="toasts"></div>
-<script src="./app.js"></script></body></html>
+  <script src="/nexus/shell.js"></script>
+</body>
+</html>

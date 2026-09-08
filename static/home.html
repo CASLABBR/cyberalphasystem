@@ -8,19 +8,20 @@
   <link rel="icon" href="/static/icon.svg">
   <link rel="stylesheet" href="/static/app.css">
   <style>
-    .hub { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 36px 18px 64px; }
+    .hub { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; padding: 36px 18px 64px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 22px; }
     .card {
       display: flex; flex-direction: column; gap: 8px;
       background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 16px; color: var(--ice); text-decoration: none; min-height: 150px;
+      padding: 16px; color: var(--ice); text-decoration: none; min-height: 140px;
     }
     .card:hover { border-color: var(--volt); }
     .card h2 { margin: 0; font-size: 18px; }
     .card p { margin: 0; color: var(--muted); font-size: 13px; flex: 1; }
-    .st { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--volt); }
-    .st.off { color: var(--warn); }
-    .st.out { color: var(--muted); }
+    .st { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--volt); }
+    table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 8px 6px; text-align: left; vertical-align: top; }
+    .leg { color: var(--muted); font-size: 13px; }
   </style>
 </head>
 <body>
@@ -33,49 +34,44 @@
         <h1>Início</h1>
       </div>
     </div>
-    <p class="tag">Porta da casa. Cada cartão é um produto. O que não tem URL pública aparece como local/APK — sem link inventado.</p>
+    <p class="leg">● funciona com código &nbsp; ◐ abre mas incompleto &nbsp; ○ sem código — não use</p>
     <div class="grid">
       <a class="card" href="/sala">
-        <span class="st">no ar</span>
+        <span class="st">● abre</span>
         <h2>Jarvis</h2>
-        <p>Sala de chat, agentes, biblioteca. Gateway multi-LLM.</p>
-      </a>
-      <a class="card" href="/docs">
-        <span class="st">api</span>
-        <h2>Jarvis API</h2>
-        <p>Swagger, /health, /chat. Motor atrás da sala.</p>
+        <p>Sala, chaves, chat se a chave passar no teste.</p>
       </a>
       <a class="card" href="/orbi">
-        <span class="st">interface aqui</span>
+        <span class="st">◐ abre</span>
         <h2>ORBI Azure</h2>
-        <p>Tela do treinador AZ-900 servida neste site. APK no celular continua separado.</p>
+        <p>Um quiz + XP. Sem Simular / Laboratório / trilha completa.</p>
       </a>
       <a class="card" href="/nexus">
-        <span class="st">interface aqui</span>
+        <span class="st">◐ no ar agora</span>
         <h2>NEXUS</h2>
-        <p>Shell 1.0.2 neste site. Backend OpenRouter do NEXUS original não veio junto.</p>
+        <p>Render 2.1.1 = casco 1.0.2 (muitos ○). Pacote novo embute Jarvis.</p>
       </a>
-      <div class="card">
-        <span class="st off">apk local</span>
-        <h2>Cyber Space Pro</h2>
-        <p>Oficina no APK 2.0. Mesmo envelope Capacitor da suíte.</p>
-      </div>
-      <div class="card">
-        <span class="st off">apk local</span>
-        <h2>Engine Alpha</h2>
-        <p>APK da família. Não misturar com o gateway Jarvis.</p>
-      </div>
-      <a class="card" href="https://github.com/CASLABBR/cyberalphasystem" target="_blank" rel="noreferrer">
-        <span class="st">github</span>
-        <h2>CASLABBR</h2>
-        <p>Repo oficial do Jarvis. Conta da casa.</p>
+      <a class="card" href="/docs">
+        <span class="st">● abre</span>
+        <h2>API</h2>
+        <p>Swagger real desta instância.</p>
       </a>
-      <div class="card">
-        <span class="st out">fora</span>
-        <h2>LibreChat / WhisperKit</h2>
-        <p>Ferramentas de terceiros nos zips. Não são produto Cyber Alpha nesta porta.</p>
-      </div>
     </div>
+    <h2 style="margin-top:28px">Mapa — tem código ou não</h2>
+    <table>
+      <tr><th></th><th>Tela / botão</th><th>Código?</th></tr>
+      <tr><td>●</td><td>Início → cartões com link</td><td>Sim, rotas FastAPI</td></tr>
+      <tr><td>●</td><td>Sala: Nova, rename, apagar, busca, pin, export</td><td>Sim, localStorage</td></tr>
+      <tr><td>●</td><td>Sala: Salvar chave + header no /chat</td><td>Sim no backend 2.1.1</td></tr>
+      <tr><td>◐</td><td>Sala: Testar chave (versão no ar)</td><td>Testa só o provedor do dropdown</td></tr>
+      <tr><td>◐</td><td>Sala: Enviar</td><td>Sim se chave + provedor batem</td></tr>
+      <tr><td>●</td><td>/docs /health /keys/test</td><td>Sim</td></tr>
+      <tr><td>●</td><td>ORBI: quiz + XP</td><td>Sim</td></tr>
+      <tr><td>○</td><td>ORBI: Simular, Laboratório, Perfil</td><td>Não nesta URL</td></tr>
+      <tr><td>○</td><td>NEXUS 1.0.2: CONTEXT AI, Smart Bar, Media Hub, Claude, Docker, Radar, OAuth</td><td>HTML sem server.js</td></tr>
+      <tr><td>◐</td><td>NEXUS 1.0.2: Studio</td><td>Textarea na tela</td></tr>
+      <tr><td>○</td><td>Cyber Space / Engine Alpha / LibreChat aqui</td><td>Sem botão</td></tr>
+    </table>
   </div>
 </body>
 </html>

@@ -221,7 +221,10 @@ function saveSettings() {
     openai: document.getElementById("key-openai").value.trim(),
   });
   saveJSON(PREF, { temperature: Number(document.getElementById("temp").value || 0.7), agent: agentEl.value });
-  keyStatus.textContent = "Preferências salvas neste navegador.";
+  const filled = Object.entries(keys()).filter(([, v]) => v).map(([k]) => k);
+  keyStatus.textContent = filled.length
+    ? "Salvo neste navegador: " + filled.join(", ")
+    : "Nenhuma chave salva. A sala segue sem modelo.";
   boot();
 }
 
@@ -262,23 +265,49 @@ document.getElementById("export-md").onclick = () => {
   a.click();
 };
 
-document.getElementById("test-key").onclick = async () => {
-  saveSettings();
-  const provider = providerEl.value;
-  const api_key = keys()[provider];
-  if (!api_key && !serverActive.includes(provider)) {
-    keyStatus.textContent = "Nenhuma chave — isso é válido no 2.0. O site segue sem modelo.";
-    return;
+document.querySelectorAll(".key-row").forEach((row) => {
+  const input = row.querySelector("input");
+  const tog = row.querySelector(".tog");
+  const tst = row.querySelector(".tst");
+  if (tog) {
+    tog.onclick = () => {
+      input.type = input.type === "password" ? "text" : "password";
+      tog.textContent = input.type === "password" ? "ver" : "ocultar";
+    };
   }
-  keyStatus.textContent = "Testando…";
-  const res = await fetch("/keys/test", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ provider, api_key: api_key || "from-server-unused" }),
-  });
-  const data = await res.json();
-  keyStatus.textContent = data.ok ? "Chave aceita." : ("Sem chave válida: " + (data.detail || data.status));
-};
+  if (tst) {
+    tst.onclick = async () => {
+      saveSettings();
+      const provider = row.getAttribute("data-prov");
+      const api_key = (input.value || "").trim();
+      if (!api_key) {
+        keyStatus.textContent = provider + ": campo vazio.";
+        return;
+      }
+      keyStatus.textContent = "Testando " + provider + "…";
+      const res = await fetch("/keys/test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ provider, api_key }),
+      });
+      const data = await res.json().catch(() => ({}));
+      keyStatus.textContent = data.ok
+        ? provider + ": chave aceita."
+        : provider + " recusou: " + (data.detail || data.status || res.status);
+    };
+  }
+});
+const clearBtn = document.getElementById("clear-keys");
+if (clearBtn) {
+  clearBtn.onclick = () => {
+    ["key-openrouter", "key-groq", "key-gemini", "key-openai"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+    saveSettings();
+    keyStatus.textContent = "Chaves apagadas deste navegador.";
+  };
+}
 
 function parseSSEChunk(buf, onDelta) {
   const parts = buf.split("\n");
@@ -423,6 +452,47 @@ document.getElementById("export-json").onclick = () => {
   a.href = URL.createObjectURL(blob);
   a.download = "jarvis-biblioteca.json";
   a.click();
+};
+
+
+document.getElementById("dup-chat").onclick = () => {
+  const c = current();
+  if (!c) return;
+  const copy = JSON.parse(JSON.stringify(c));
+  copy.id = "c" + Date.now();
+  copy.title = (c.title || "conversa") + " (cópia)";
+  copy.pin = false;
+  lib.items.unshift(copy);
+  lib.current = copy.id;
+  saveJSON(LIB, lib);
+  renderConvs();
+  paintThread();
+};
+document.getElementById("copy-last").onclick = async () => {
+  const c = current();
+  if (!c) return;
+  const last = [...(c.messages || [])].reverse().find((m) => m.role === "assistant");
+  if (!last) return;
+  try { await navigator.clipboard.writeText(last.content); }
+  catch { prompt("Copie:", last.content); }
+};
+document.getElementById("import-json").onclick = () => document.getElementById("import-file").click();
+document.getElementById("import-file").onchange = (ev) => {
+  const f = ev.target.files && ev.target.files[0];
+  if (!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!data.items) throw new Error("json sem items");
+      lib = data;
+      saveJSON(LIB, lib);
+      if (!current()) ensureConv();
+      renderConvs();
+      paintThread();
+    } catch (e) { alert("JSON inválido"); }
+  };
+  reader.readAsText(f);
 };
 
 boot();

@@ -52,7 +52,11 @@
         <button id="open-settings" class="linkish" type="button">Ajustes</button>
         <button id="export-md" class="linkish" type="button">Exportar .md</button>
         <button id="export-json" class="linkish" type="button">Exportar .json</button>
+        <button id="import-json" class="linkish" type="button">Importar .json</button>
+        <input id="import-file" type="file" accept="application/json" hidden>
+        <button id="dup-chat" class="linkish" type="button">Duplicar conversa</button>
         <button id="pin-chat" class="linkish" type="button">Fixar / desafixar</button>
+        <button id="copy-last" class="linkish" type="button">Copiar última resposta</button>
         <a href="/">Início da casa</a>
         <a href="/docs">Swagger</a>
       </nav>
@@ -79,17 +83,41 @@
   </div>
   <div id="settings" class="modal hidden">
     <div class="modal-card">
-      <h2>Ajustes</h2>
-      <p class="hint">Chave opcional, só neste navegador. Nunca neste chat comigo e nunca no GitHub.</p>
-      <label>OpenRouter <input id="key-openrouter" type="password" autocomplete="off"></label>
-      <label>Groq <input id="key-groq" type="password" autocomplete="off"></label>
-      <label>Gemini <input id="key-gemini" type="password" autocomplete="off"></label>
-      <label>OpenAI <input id="key-openai" type="password" autocomplete="off"></label>
+      <h2>Chaves API</h2>
+      <p class="hint">Cola aqui. Fica só neste navegador. Sem aspas. Não manda no chat nem no GitHub.</p>
+      <div class="key-row" data-prov="openrouter">
+        <label>OpenRouter <small>sk-or-…</small>
+          <input id="key-openrouter" type="password" autocomplete="off" spellcheck="false" placeholder="sk-or-v1-…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
+      <div class="key-row" data-prov="groq">
+        <label>Groq <small>gsk_…</small>
+          <input id="key-groq" type="password" autocomplete="off" spellcheck="false" placeholder="gsk_…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
+      <div class="key-row" data-prov="gemini">
+        <label>Gemini <small>AIza…</small>
+          <input id="key-gemini" type="password" autocomplete="off" spellcheck="false" placeholder="AIza…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
+      <div class="key-row" data-prov="openai">
+        <label>OpenAI <small>sk-…</small>
+          <input id="key-openai" type="password" autocomplete="off" spellcheck="false" placeholder="sk-…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
       <label>Temperatura <input id="temp" type="number" min="0" max="2" step="0.1" value="0.7"></label>
       <p id="key-status" class="hint"></p>
       <div class="modal-actions">
-        <button type="button" id="test-key">Testar se houver chave</button>
-        <button type="button" id="save-settings">Salvar</button>
+        <button type="button" id="save-settings">Salvar chaves</button>
+        <button type="button" id="clear-keys" class="ghost">Apagar chaves deste browser</button>
         <button type="button" id="close-settings" class="ghost">Fechar</button>
       </div>
     </div>

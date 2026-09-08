@@ -242,3 +242,12 @@ select, textarea {
   }
   .rail.open { transform: none; }
 }
+
+.key-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 6px;
+  align-items: end;
+}
+.key-row label small { color: var(--muted); font-weight: 400; }
+.key-row input { letter-spacing: 0.04em; }

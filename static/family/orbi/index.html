@@ -1,3 +1,68 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07132c"><title>ORBI AZURE 2.0</title><style>
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#164ba0,#07132c 42%,#030814 75%);color:#edf6ff;font:14px system-ui;min-height:100vh}.wrap{max-width:760px;margin:auto;padding:16px 15px 100px}header{display:flex;align-items:center;justify-content:space-between;padding:8px 0 20px}.brand{font-weight:900;letter-spacing:2px}.brand b{color:#4db7ff}.pill{padding:8px 11px;border-radius:99px;background:#122b52;border:1px solid #2d68a5}.hero{padding:22px;border:1px solid #286ec0;border-radius:24px;background:linear-gradient(145deg,#102d5a,#091a38);box-shadow:0 24px 70px #00142c}.orb{width:78px;height:78px;border-radius:50%;margin:auto;background:radial-gradient(circle at 35% 25%,#bff2ff,#4ea9ff 25%,#2455d4 65%,#572ca7);box-shadow:0 0 45px #34a9ff99;display:grid;place-items:center;font-size:34px}.hero{text-align:center}.hero h1{margin:15px 0 4px;font-size:28px}.hero p{margin:0;color:#9bb9d8}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}.stat{background:#081a35;border:1px solid #1d4a7d;border-radius:15px;padding:13px;text-align:center}.stat b{display:block;color:#61c8ff;font-size:19px}.progress{margin-top:20px;text-align:left}.track{height:9px;background:#061125;border-radius:20px;overflow:hidden}.track i{display:block;width:36%;height:100%;background:linear-gradient(90deg,#28a9ff,#8c5cff)}button{border:0;color:white;font-weight:800}.primary{width:100%;padding:15px;border-radius:14px;margin-top:18px;background:linear-gradient(135deg,#078ad6,#6758e8)}h2{font-size:18px;margin:22px 2px 12px}.cards{display:grid;gap:10px}.card{display:flex;gap:13px;align-items:center;background:#091a33;border:1px solid #1b406d;border-radius:17px;padding:15px}.ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#153d73;font-size:21px}.card b{display:block}.card small{color:#88a6c4}.quiz{display:none;margin-top:16px;text-align:left}.opt{display:block;width:100%;padding:12px;margin:8px 0;text-align:left;border-radius:12px;background:#102a50;border:1px solid #28598a}.msg{min-height:20px;color:#7ee6b5;font-weight:700}nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#061126ef;border-top:1px solid #244673;padding:11px 4px max(11px,env(safe-area-inset-bottom))}nav span{color:#829fbe;font-size:11px}.on{color:#55bfff!important}
-</style></head><body><main class="wrap"><header><div class="brand">ORBI <b>AZURE</b></div><div class="pill">🔥 <span id="streak">3</span> dias</div></header><section class="hero"><div class="orb">✦</div><h1>Olá, Alex!</h1><p>Pronto para avançar na nuvem?</p><div class="stats"><div class="stat"><b id="xp">240</b>XP</div><div class="stat"><b>36%</b>AZ-900</div><div class="stat"><b>7</b>nível</div></div><div class="progress"><small>Trilha Microsoft Azure Fundamentals</small><div class="track"><i></i></div></div><button class="primary" onclick="startQuiz()">CONTINUAR ESTUDO</button><div class="quiz" id="quiz"><h3>Qual serviço gerencia identidades no Azure?</h3><button class="opt" onclick="answer(false)">Azure Monitor</button><button class="opt" onclick="answer(true)">Microsoft Entra ID</button><button class="opt" onclick="answer(false)">Azure Functions</button><div class="msg" id="msg"></div></div></section><h2>Seu caminho</h2><section class="cards"><div class="card"><div class="ico">☁</div><div><b>Fundamentos da nuvem</b><small>Conceitos, benefícios e modelos</small></div></div><div class="card"><div class="ico">▦</div><div><b>Serviços do Azure</b><small>Computação, rede e armazenamento</small></div></div><div class="card"><div class="ico">🛡</div><div><b>Segurança e governança</b><small>Identidade, custos e conformidade</small></div></div></section></main><nav><span class="on">● Aprender</span><span>◇ Simular</span><span>▥ Laboratório</span><span>♙ Perfil</span></nav><script>let xp=+(localStorage.orbiXp||240);document.querySelector('#xp').textContent=xp;function startQuiz(){document.querySelector('#quiz').style.display='block';event.target.style.display='none'}function answer(ok){let m=document.querySelector('#msg');if(ok){xp+=10;localStorage.orbiXp=xp;document.querySelector('#xp').textContent=xp;m.textContent='✓ Correto! +10 XP'}else m.textContent='Revise: o Microsoft Entra ID gerencia identidades.'}</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07132c">
+  <title>ORBI Azure</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#164ba0,#07132c 42%,#030814 75%);color:#edf6ff;font:15px system-ui;min-height:100vh}
+    .wrap{max-width:720px;margin:auto;padding:20px 16px 40px}
+    a.back{color:#4db3ff;text-decoration:none;font-size:13px}
+    .hero{margin-top:16px;padding:22px;border:1px solid #286ec0;border-radius:24px;background:linear-gradient(145deg,#102d5a,#091a38)}
+    button{border:0;color:#fff;font-weight:700;cursor:pointer}
+    .primary{width:100%;padding:14px;border-radius:14px;margin-top:16px;background:linear-gradient(135deg,#078ad6,#6758e8)}
+    .opt{display:block;width:100%;padding:12px;margin:8px 0;text-align:left;border-radius:12px;background:#102a50;border:1px solid #28598a}
+    .stat{color:#61c8ff}
+    .ok{color:#7ee6b5;font-weight:700;min-height:1.2em}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="back" href="/">← NEXUS</a>
+    <section class="hero">
+      <h1>ORBI Azure</h1>
+      <p>Banco AZ-900 neste navegador. Sem aba morta.</p>
+      <div class="stat">XP <b id="xp">0</b> · pergunta <span id="n">1</span>/<span id="tot"></span></div>
+      <h3 id="q"></h3>
+      <div id="opts"></div>
+      <p class="ok" id="msg"></p>
+      <button class="primary" type="button" id="next">Próxima</button>
+    </section>
+  </main>
+  <script>
+    const Q = [
+      {q:"Qual serviço gerencia identidades no Azure?", a:["Azure Monitor","Microsoft Entra ID","Azure Functions"], i:1},
+      {q:"O que é região no Azure?", a:["Um datacenter único","Conjunto de datacenters próximos","Um grupo de recursos"], i:1},
+      {q:"Qual modelo é IaaS?", a:["Azure App Service","Azure Virtual Machines","Microsoft 365"], i:1},
+      {q:"O que o Azure Resource Manager faz?", a:["Só fatura","Implanta e organiza recursos","Substitui o Entra ID"], i:1},
+      {q:"Availability Zone é:", a:["Zona de DNS","Datacenters isolados na mesma região","Um resource group"], i:1},
+      {q:"Azure Blob Storage serve principalmente para:", a:["Objetos/arquivos","Filas de CPU","Identidade"], i:0},
+      {q:"O portal Azure é:", a:["Só CLI","Interface web de gestão","Um SO de VM"], i:1},
+      {q:"Responsabilidade no IaaS do cliente inclui:", a:["Energia do datacenter","Sistema operacional da VM","Prédio físico"], i:1}
+    ];
+    let i=0, xp=+(localStorage.orbiXp||0);
+    document.getElementById("xp").textContent=xp;
+    document.getElementById("tot").textContent=Q.length;
+    function draw(){
+      const item=Q[i%Q.length];
+      document.getElementById("n").textContent=(i%Q.length)+1;
+      document.getElementById("q").textContent=item.q;
+      document.getElementById("msg").textContent="";
+      const box=document.getElementById("opts");
+      box.innerHTML="";
+      item.a.forEach((t,idx)=>{
+        const b=document.createElement("button");
+        b.className="opt"; b.type="button"; b.textContent=t;
+        b.onclick=()=>{
+          if(idx===item.i){ xp+=10; localStorage.orbiXp=xp; document.getElementById("xp").textContent=xp; document.getElementById("msg").textContent="Correto. +10 XP"; }
+          else document.getElementById("msg").textContent="Não. Resposta: "+item.a[item.i];
+        };
+        box.appendChild(b);
+      });
+    }
+    document.getElementById("next").onclick=()=>{ i++; draw(); };
+    draw();
+  </script>
+</body>
+</html>
