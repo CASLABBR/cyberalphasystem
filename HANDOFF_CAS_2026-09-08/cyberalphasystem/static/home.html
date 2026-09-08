@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07132c">
+  <title>Cyber Alpha System — início</title>
+  <link rel="icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/app.css">
+  <style>
+    .hub { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; padding: 36px 18px 64px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 22px; }
+    .card {
+      display: flex; flex-direction: column; gap: 8px;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 16px; color: var(--ice); text-decoration: none; min-height: 140px;
+    }
+    .card:hover { border-color: var(--volt); }
+    .card h2 { margin: 0; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; flex: 1; }
+    .st { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--volt); }
+    table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 8px 6px; text-align: left; vertical-align: top; }
+    .leg { color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="hub">
+    <div class="brand">
+      <div class="orb"><span class="orb-core"></span><span class="orb-ring"></span></div>
+      <div>
+        <p class="brand-kicker">Cyber Alpha System</p>
+        <h1>Início</h1>
+      </div>
+    </div>
+    <p class="leg">● funciona com código &nbsp; ◐ abre mas incompleto &nbsp; ○ sem código — não use</p>
+    <div class="grid">
+      <a class="card" href="/sala">
+        <span class="st">● abre</span>
+        <h2>Jarvis</h2>
+        <p>Sala, chaves, chat se a chave passar no teste.</p>
+      </a>
+      <a class="card" href="/orbi">
+        <span class="st">◐ abre</span>
+        <h2>ORBI Azure</h2>
+        <p>Um quiz + XP. Sem Simular / Laboratório / trilha completa.</p>
+      </a>
+      <a class="card" href="/nexus">
+        <span class="st">◐ no ar agora</span>
+        <h2>NEXUS</h2>
+        <p>Render 2.1.1 = casco 1.0.2 (muitos ○). Pacote novo embute Jarvis.</p>
+      </a>
+      <a class="card" href="/docs">
+        <span class="st">● abre</span>
+        <h2>API</h2>
+        <p>Swagger real desta instância.</p>
+      </a>
+    </div>
+    <h2 style="margin-top:28px">Mapa — tem código ou não</h2>
+    <table>
+      <tr><th></th><th>Tela / botão</th><th>Código?</th></tr>
+      <tr><td>●</td><td>Início → cartões com link</td><td>Sim, rotas FastAPI</td></tr>
+      <tr><td>●</td><td>Sala: Nova, rename, apagar, busca, pin, export</td><td>Sim, localStorage</td></tr>
+      <tr><td>●</td><td>Sala: Salvar chave + header no /chat</td><td>Sim no backend 2.1.1</td></tr>
+      <tr><td>◐</td><td>Sala: Testar chave (versão no ar)</td><td>Testa só o provedor do dropdown</td></tr>
+      <tr><td>◐</td><td>Sala: Enviar</td><td>Sim se chave + provedor batem</td></tr>
+      <tr><td>●</td><td>/docs /health /keys/test</td><td>Sim</td></tr>
+      <tr><td>●</td><td>ORBI: quiz + XP</td><td>Sim</td></tr>
+      <tr><td>○</td><td>ORBI: Simular, Laboratório, Perfil</td><td>Não nesta URL</td></tr>
+      <tr><td>○</td><td>NEXUS 1.0.2: CONTEXT AI, Smart Bar, Media Hub, Claude, Docker, Radar, OAuth</td><td>HTML sem server.js</td></tr>
+      <tr><td>◐</td><td>NEXUS 1.0.2: Studio</td><td>Textarea na tela</td></tr>
+      <tr><td>○</td><td>Cyber Space / Engine Alpha / LibreChat aqui</td><td>Sem botão</td></tr>
+    </table>
+  </div>
+</body>
+</html>

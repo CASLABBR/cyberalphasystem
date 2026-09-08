@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07132c">
+  <meta name="description" content="Jarvis 2 — Cyber Alpha System">
+  <title>Jarvis 2.0 — Cyber Alpha System</title>
+  <link rel="manifest" href="/static/manifest.webmanifest">
+  <link rel="icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="app">
+    <aside class="rail" id="rail">
+      <div class="brand">
+        <div class="orb" aria-hidden="true"><span class="orb-core"></span><span class="orb-ring"></span></div>
+        <div>
+          <p class="brand-kicker">Cyber Alpha System</p>
+          <h1>Jarvis</h1>
+        </div>
+      </div>
+      <p class="tag">2.0.1 — biblioteca, agentes, busca, export. Modelo só com chave.</p>
+      <div class="badge-row">
+        <span id="health-pill" class="pill warn">checando…</span>
+        <span id="version-pill" class="pill">v2.0.1</span>
+      </div>
+      <section>
+        <h2>Agente</h2>
+        <select id="agent"></select>
+      </section>
+      <section>
+        <h2>Pasta</h2>
+        <select id="folder"></select>
+      </section>
+      <section>
+        <h2>Conversas</h2>
+        <input id="search" type="search" placeholder="Buscar…">
+        <div class="row-btns">
+          <button id="new-chat" class="ghost" type="button">Nova</button>
+          <button id="rename-chat" class="ghost" type="button">Renomear</button>
+          <button id="del-chat" class="ghost" type="button">Apagar</button>
+        </div>
+        <div id="conv-list" class="conv-list"></div>
+      </section>
+      <section>
+        <h2>Provedores</h2>
+        <div id="provider-list" class="provider-list"></div>
+      </section>
+      <nav class="links">
+        <button id="open-settings" class="linkish" type="button">Ajustes</button>
+        <button id="export-md" class="linkish" type="button">Exportar .md</button>
+        <button id="export-json" class="linkish" type="button">Exportar .json</button>
+        <button id="import-json" class="linkish" type="button">Importar .json</button>
+        <input id="import-file" type="file" accept="application/json" hidden>
+        <button id="dup-chat" class="linkish" type="button">Duplicar conversa</button>
+        <button id="pin-chat" class="linkish" type="button">Fixar / desafixar</button>
+        <button id="copy-last" class="linkish" type="button">Copiar última resposta</button>
+        <a href="/">Início da casa</a>
+        <a href="/docs">Swagger</a>
+      </nav>
+    </aside>
+    <main class="stage">
+      <header class="top">
+        <button id="menu" class="ghost menu-btn" type="button">Menu</button>
+        <div>
+          <p class="live-label" id="conv-title">Sala do Jarvis</p>
+          <p id="subtitle" class="sub">Aprimorado: busca, pin, export JSON, menu no celular.</p>
+        </div>
+        <div class="controls">
+          <label>Provedor <select id="provider"></select></label>
+          <label>Modelo <select id="model"></select></label>
+        </div>
+      </header>
+      <section id="thread" class="thread"></section>
+      <form id="composer" class="composer">
+        <textarea id="prompt" rows="2" placeholder="Escreva. Sem chave a mensagem entra na biblioteca."></textarea>
+        <button type="submit" id="send">Enviar</button>
+        <button type="button" id="stop" class="ghost hidden">Parar</button>
+      </form>
+    </main>
+  </div>
+  <div id="settings" class="modal hidden">
+    <div class="modal-card">
+      <h2>Chaves API</h2>
+      <p class="hint">Cola aqui. Fica só neste navegador. Sem aspas. Não manda no chat nem no GitHub.</p>
+      <div class="key-row" data-prov="openrouter">
+        <label>OpenRouter <small>sk-or-…</small>
+          <input id="key-openrouter" type="password" autocomplete="off" spellcheck="false" placeholder="sk-or-v1-…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
+      <div class="key-row" data-prov="groq">
+        <label>Groq <small>gsk_…</small>
+          <input id="key-groq" type="password" autocomplete="off" spellcheck="false" placeholder="gsk_…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
+      <div class="key-row" data-prov="gemini">
+        <label>Gemini <small>AIza…</small>
+          <input id="key-gemini" type="password" autocomplete="off" spellcheck="false" placeholder="AIza…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
+      <div class="key-row" data-prov="openai">
+        <label>OpenAI <small>sk-…</small>
+          <input id="key-openai" type="password" autocomplete="off" spellcheck="false" placeholder="sk-…">
+        </label>
+        <button type="button" class="ghost tog">ver</button>
+        <button type="button" class="ghost tst">testar</button>
+      </div>
+      <label>Temperatura <input id="temp" type="number" min="0" max="2" step="0.1" value="0.7"></label>
+      <p id="key-status" class="hint"></p>
+      <div class="modal-actions">
+        <button type="button" id="save-settings">Salvar chaves</button>
+        <button type="button" id="clear-keys" class="ghost">Apagar chaves deste browser</button>
+        <button type="button" id="close-settings" class="ghost">Fechar</button>
+      </div>
+    </div>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
