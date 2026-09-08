@@ -1,0 +1,9 @@
+{
+  "name": "Jarvis — Cyber Alpha System",
+  "short_name": "Jarvis",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030814",
+  "theme_color": "#07132c",
+  "lang": "pt-BR"
+}

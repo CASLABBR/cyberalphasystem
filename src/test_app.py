@@ -36,3 +36,8 @@ def test_chat_without_key_returns_provider_error_not_crash():
     r = client.post("/chat", json={"prompt": "ping"})
     assert r.status_code in (500, 401)
     assert "detail" in r.json()
+
+
+def test_keys_test_rejects_unknown_provider():
+    r = client.post("/keys/test", json={"provider": "naoexiste", "api_key": "abcd"})
+    assert r.status_code == 400

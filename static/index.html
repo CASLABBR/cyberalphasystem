@@ -4,63 +4,95 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#07132c">
-  <title>Jarvis — Cyber Alpha System</title>
+  <meta name="description" content="Jarvis 2 — Cyber Alpha System">
+  <title>Jarvis 2.0 — Cyber Alpha System</title>
+  <link rel="manifest" href="/static/manifest.webmanifest">
+  <link rel="icon" href="/static/icon.svg">
   <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
   <div class="bg"></div>
   <div class="app">
-    <aside class="rail">
+    <aside class="rail" id="rail">
       <div class="brand">
-        <div class="orb" aria-hidden="true">
-          <span class="orb-core"></span>
-          <span class="orb-ring"></span>
-        </div>
+        <div class="orb" aria-hidden="true"><span class="orb-core"></span><span class="orb-ring"></span></div>
         <div>
           <p class="brand-kicker">Cyber Alpha System</p>
           <h1>Jarvis</h1>
         </div>
       </div>
-      <p class="tag">Gateway multi-LLM. Mesma arte da casa: preto, azul profundo, gelo.</p>
+      <p class="tag">2.0.1 — biblioteca, agentes, busca, export. Modelo só com chave.</p>
       <div class="badge-row">
         <span id="health-pill" class="pill warn">checando…</span>
-        <span id="version-pill" class="pill">v1.1.0</span>
+        <span id="version-pill" class="pill">v2.0.1</span>
       </div>
+      <section>
+        <h2>Agente</h2>
+        <select id="agent"></select>
+      </section>
+      <section>
+        <h2>Pasta</h2>
+        <select id="folder"></select>
+      </section>
+      <section>
+        <h2>Conversas</h2>
+        <input id="search" type="search" placeholder="Buscar…">
+        <div class="row-btns">
+          <button id="new-chat" class="ghost" type="button">Nova</button>
+          <button id="rename-chat" class="ghost" type="button">Renomear</button>
+          <button id="del-chat" class="ghost" type="button">Apagar</button>
+        </div>
+        <div id="conv-list" class="conv-list"></div>
+      </section>
       <section>
         <h2>Provedores</h2>
         <div id="provider-list" class="provider-list"></div>
       </section>
       <nav class="links">
-        <a href="/docs">Swagger /docs</a>
-        <a href="/health">/health</a>
-        <a href="/api">/api</a>
+        <button id="open-settings" class="linkish" type="button">Ajustes</button>
+        <button id="export-md" class="linkish" type="button">Exportar .md</button>
+        <button id="export-json" class="linkish" type="button">Exportar .json</button>
+        <button id="pin-chat" class="linkish" type="button">Fixar / desafixar</button>
+        <a href="/">Início da casa</a>
+        <a href="/docs">Swagger</a>
       </nav>
-      <button id="clear-btn" class="ghost" type="button">Limpar conversa</button>
     </aside>
-
     <main class="stage">
       <header class="top">
+        <button id="menu" class="ghost menu-btn" type="button">Menu</button>
         <div>
-          <p class="live-label">Sala do Jarvis</p>
-          <p id="subtitle" class="sub">Escolha um provedor ativo e fale.</p>
+          <p class="live-label" id="conv-title">Sala do Jarvis</p>
+          <p id="subtitle" class="sub">Aprimorado: busca, pin, export JSON, menu no celular.</p>
         </div>
         <div class="controls">
-          <label>
-            Provedor
-            <select id="provider"></select>
-          </label>
-          <label>
-            Modelo
-            <select id="model"></select>
-          </label>
+          <label>Provedor <select id="provider"></select></label>
+          <label>Modelo <select id="model"></select></label>
         </div>
       </header>
-      <section id="thread" class="thread" aria-live="polite"></section>
+      <section id="thread" class="thread"></section>
       <form id="composer" class="composer">
-        <textarea id="prompt" rows="2" placeholder="Fale com o Jarvis…" required></textarea>
+        <textarea id="prompt" rows="2" placeholder="Escreva. Sem chave a mensagem entra na biblioteca."></textarea>
         <button type="submit" id="send">Enviar</button>
+        <button type="button" id="stop" class="ghost hidden">Parar</button>
       </form>
     </main>
+  </div>
+  <div id="settings" class="modal hidden">
+    <div class="modal-card">
+      <h2>Ajustes</h2>
+      <p class="hint">Chave opcional, só neste navegador. Nunca neste chat comigo e nunca no GitHub.</p>
+      <label>OpenRouter <input id="key-openrouter" type="password" autocomplete="off"></label>
+      <label>Groq <input id="key-groq" type="password" autocomplete="off"></label>
+      <label>Gemini <input id="key-gemini" type="password" autocomplete="off"></label>
+      <label>OpenAI <input id="key-openai" type="password" autocomplete="off"></label>
+      <label>Temperatura <input id="temp" type="number" min="0" max="2" step="0.1" value="0.7"></label>
+      <p id="key-status" class="hint"></p>
+      <div class="modal-actions">
+        <button type="button" id="test-key">Testar se houver chave</button>
+        <button type="button" id="save-settings">Salvar</button>
+        <button type="button" id="close-settings" class="ghost">Fechar</button>
+      </div>
+    </div>
   </div>
   <script src="/static/app.js"></script>
 </body>

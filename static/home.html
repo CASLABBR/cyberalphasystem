@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07132c">
+  <title>Cyber Alpha System — início</title>
+  <link rel="icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/app.css">
+  <style>
+    .hub { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 36px 18px 64px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 22px; }
+    .card {
+      display: flex; flex-direction: column; gap: 8px;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 16px; color: var(--ice); text-decoration: none; min-height: 150px;
+    }
+    .card:hover { border-color: var(--volt); }
+    .card h2 { margin: 0; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; flex: 1; }
+    .st { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--volt); }
+    .st.off { color: var(--warn); }
+    .st.out { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="hub">
+    <div class="brand">
+      <div class="orb"><span class="orb-core"></span><span class="orb-ring"></span></div>
+      <div>
+        <p class="brand-kicker">Cyber Alpha System</p>
+        <h1>Início</h1>
+      </div>
+    </div>
+    <p class="tag">Porta da casa. Cada cartão é um produto. O que não tem URL pública aparece como local/APK — sem link inventado.</p>
+    <div class="grid">
+      <a class="card" href="/sala">
+        <span class="st">no ar</span>
+        <h2>Jarvis</h2>
+        <p>Sala de chat, agentes, biblioteca. Gateway multi-LLM.</p>
+      </a>
+      <a class="card" href="/docs">
+        <span class="st">api</span>
+        <h2>Jarvis API</h2>
+        <p>Swagger, /health, /chat. Motor atrás da sala.</p>
+      </a>
+      <a class="card" href="/orbi">
+        <span class="st">interface aqui</span>
+        <h2>ORBI Azure</h2>
+        <p>Tela do treinador AZ-900 servida neste site. APK no celular continua separado.</p>
+      </a>
+      <a class="card" href="/nexus">
+        <span class="st">interface aqui</span>
+        <h2>NEXUS</h2>
+        <p>Shell 1.0.2 neste site. Backend OpenRouter do NEXUS original não veio junto.</p>
+      </a>
+      <div class="card">
+        <span class="st off">apk local</span>
+        <h2>Cyber Space Pro</h2>
+        <p>Oficina no APK 2.0. Mesmo envelope Capacitor da suíte.</p>
+      </div>
+      <div class="card">
+        <span class="st off">apk local</span>
+        <h2>Engine Alpha</h2>
+        <p>APK da família. Não misturar com o gateway Jarvis.</p>
+      </div>
+      <a class="card" href="https://github.com/CASLABBR/cyberalphasystem" target="_blank" rel="noreferrer">
+        <span class="st">github</span>
+        <h2>CASLABBR</h2>
+        <p>Repo oficial do Jarvis. Conta da casa.</p>
+      </a>
+      <div class="card">
+        <span class="st out">fora</span>
+        <h2>LibreChat / WhisperKit</h2>
+        <p>Ferramentas de terceiros nos zips. Não são produto Cyber Alpha nesta porta.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

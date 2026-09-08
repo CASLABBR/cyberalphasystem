@@ -18,6 +18,8 @@ Encaminha `POST /chat` para OpenRouter, Groq, Gemini ou OpenAI. Sem banco e sem 
 
 Interface em `/` (arte Cyber Alpha: preto, azul profundo, gelo). JSON de status em `/api`.
 
+v1.2: Ajustes de chave no próprio site (neste navegador), stream, Parar, várias conversas locais. Ainda **não** é a v2.0.
+
 | Método | Rota | Auth |
 |---|---|---|
 | GET | `/` | UI |
@@ -26,6 +28,8 @@ Interface em `/` (arte Cyber Alpha: preto, azul profundo, gelo). JSON de status 
 | GET | `/providers` | pública |
 | GET | `/docs` | pública |
 | POST | `/chat` | header `X-Jarvis-Key` **só se** `JARVIS_GATEWAY_KEY` estiver setada |
+| POST | `/chat/stream` | mesmo auth; SSE |
+| POST | `/keys/test` | testa chave sem gravar no git |
 
 ## Subir local
 
