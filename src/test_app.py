@@ -5,8 +5,15 @@ from src.main import app
 client = TestClient(app)
 
 
-def test_root():
+def test_root_is_ui():
     r = client.get("/")
+    assert r.status_code == 200
+    assert "text/html" in r.headers.get("content-type", "")
+    assert "Jarvis" in r.text
+
+
+def test_api_status():
+    r = client.get("/api")
     assert r.status_code == 200
     body = r.json()
     assert body["service"] == "Jarvis Gateway API"

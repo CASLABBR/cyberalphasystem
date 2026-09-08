@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07132c">
+  <title>Jarvis — Cyber Alpha System</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="app">
+    <aside class="rail">
+      <div class="brand">
+        <div class="orb" aria-hidden="true">
+          <span class="orb-core"></span>
+          <span class="orb-ring"></span>
+        </div>
+        <div>
+          <p class="brand-kicker">Cyber Alpha System</p>
+          <h1>Jarvis</h1>
+        </div>
+      </div>
+      <p class="tag">Gateway multi-LLM. Mesma arte da casa: preto, azul profundo, gelo.</p>
+      <div class="badge-row">
+        <span id="health-pill" class="pill warn">checando…</span>
+        <span id="version-pill" class="pill">v1.1.0</span>
+      </div>
+      <section>
+        <h2>Provedores</h2>
+        <div id="provider-list" class="provider-list"></div>
+      </section>
+      <nav class="links">
+        <a href="/docs">Swagger /docs</a>
+        <a href="/health">/health</a>
+        <a href="/api">/api</a>
+      </nav>
+      <button id="clear-btn" class="ghost" type="button">Limpar conversa</button>
+    </aside>
+
+    <main class="stage">
+      <header class="top">
+        <div>
+          <p class="live-label">Sala do Jarvis</p>
+          <p id="subtitle" class="sub">Escolha um provedor ativo e fale.</p>
+        </div>
+        <div class="controls">
+          <label>
+            Provedor
+            <select id="provider"></select>
+          </label>
+          <label>
+            Modelo
+            <select id="model"></select>
+          </label>
+        </div>
+      </header>
+      <section id="thread" class="thread" aria-live="polite"></section>
+      <form id="composer" class="composer">
+        <textarea id="prompt" rows="2" placeholder="Fale com o Jarvis…" required></textarea>
+        <button type="submit" id="send">Enviar</button>
+      </form>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

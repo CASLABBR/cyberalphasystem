@@ -14,11 +14,14 @@ Isto **não** é o app Android ORBI Azure.
 
 ## O que faz
 
-Encaminha `POST /chat` para OpenRouter, Groq, Gemini ou OpenAI. Sem banco, sem login Microsoft, sem UI.
+Encaminha `POST /chat` para OpenRouter, Groq, Gemini ou OpenAI. Sem banco e sem login Microsoft.
+
+Interface em `/` (arte Cyber Alpha: preto, azul profundo, gelo). JSON de status em `/api`.
 
 | Método | Rota | Auth |
 |---|---|---|
-| GET | `/` | pública |
+| GET | `/` | UI |
+| GET | `/api` | status JSON |
 | GET | `/health` | pública |
 | GET | `/providers` | pública |
 | GET | `/docs` | pública |

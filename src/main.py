@@ -1,15 +1,20 @@
 from datetime import datetime
+from pathlib import Path
 import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 import httpx
 
 load_dotenv()
 
-APP_VERSION = "1.0.1"
+APP_VERSION = "1.1.0"
+ROOT_DIR = Path(__file__).resolve().parent.parent
+STATIC_DIR = ROOT_DIR / "static"
 
 app = FastAPI(
     title="Jarvis Gateway API",
@@ -28,6 +33,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+if STATIC_DIR.is_dir():
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 class ChatRequest(BaseModel):
@@ -87,8 +95,7 @@ def _require_gateway_key(x_jarvis_key: str | None) -> None:
         raise HTTPException(status_code=401, detail="Missing or invalid X-Jarvis-Key")
 
 
-@app.get("/")
-async def read_root():
+def _status_payload() -> dict:
     return {
         "service": "Jarvis Gateway API",
         "product": "Cyber Alpha Jarvis",
@@ -96,7 +103,21 @@ async def read_root():
         "status": "online",
         "providers": list(PROVIDERS.keys()),
         "documentation": "/docs",
+        "ui": "/",
     }
+
+
+@app.get("/", response_class=HTMLResponse)
+async def ui_root():
+    index = STATIC_DIR / "index.html"
+    if not index.is_file():
+        return HTMLResponse("<p>UI ausente. Use /docs</p>", status_code=200)
+    return FileResponse(index)
+
+
+@app.get("/api")
+async def read_root():
+    return _status_payload()
 
 
 @app.get("/health")
@@ -107,6 +128,7 @@ async def health_check():
         "providers_active": len(active),
         "providers": active,
         "gateway_auth": bool(os.getenv("JARVIS_GATEWAY_KEY", "").strip()),
+        "version": APP_VERSION,
         "timestamp": datetime.now().isoformat(),
     }
 
